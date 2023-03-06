@@ -7,6 +7,8 @@ int getClientOption(std::list<Client> clients) {
   int option;
   
   for (int i = 0; i < clients.size(); i++) {
+    // O ponteiro 'it' aponta para o elemento da lista que está na posição 'i', que é um 'Client'.
+    // Também presente nas funções de 'Operations'.
     auto it = std::next(clients.begin(), i);
     Client client = *it;
 
@@ -54,9 +56,6 @@ struct Operations {
 
     int clientOption = getClientOption(clients);
 
-    // Percorre a lista de clientes até achar o cliente selecionado.
-    // O ponteiro 'it' aponta para o elemento da lista que está na posição 'clientOption - 1'.
-    // Também presente nas próximas funções.
     auto it = std::next(clients.begin(), clientOption - 1);
     Client client = *it;
 
