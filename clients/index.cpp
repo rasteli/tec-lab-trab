@@ -26,6 +26,8 @@ int getMenuOption() {
 }
 
 int main() {
+  using namespace std::placeholders;
+  
   int option;
   Operations op;
   std::list<Client> clients;
@@ -34,12 +36,12 @@ int main() {
   // Isso foi feito para evitar o uso de um switch statement com vários casos ou vários if statements
   // para a execução da função desejada.
   std::unordered_map<int, std::function<void(Operations*)>> operations = {
-    {1, std::bind(&Operations::registerNewClient, &op, std::ref(clients))},
-    {2, std::bind(&Operations::viewClientInfo, &op, std::ref(clients))},
-    {3, std::bind(&Operations::editClientInfo, &op, std::ref(clients))},
-    {4, std::bind(&Operations::registerPaidInstallment, &op, std::ref(clients))},
-    {5, std::bind(&Operations::registerNewLoan, &op, std::ref(clients))},
-    {6, std::bind(&Operations::eraseClient, &op, std::ref(clients))},
+    {1, std::bind(&Operations::registerNewClient, _1, std::ref(clients))},
+    {2, std::bind(&Operations::viewClientInfo, _1, std::ref(clients))},
+    {3, std::bind(&Operations::editClientInfo, _1, std::ref(clients))},
+    {4, std::bind(&Operations::registerPaidInstallment, _1, std::ref(clients))},
+    {5, std::bind(&Operations::registerNewLoan, _1, std::ref(clients))},
+    {6, std::bind(&Operations::eraseClient, _1, std::ref(clients))},
     {7, &Operations::exit}
   };
     
