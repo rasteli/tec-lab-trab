@@ -3,6 +3,26 @@
 
 #include "math.h"
 
+void calculateAndPrintOwnResults(double theta, int n, double sin_c, double cos_c) {
+  auto sin = math::sin(theta, n);
+  auto cos = math::cos(theta, n);
+
+  std::cout << "\nPara "<< n << " termos:" << '\n'
+            << "sen(x) = " << sin << '\n'
+            << "cos(x) = " << cos << '\n';
+
+  std::cout << "\nDiferença entre " << n << " termos e cmath:" << '\n';
+
+  double sinDifference = fabs((double)(sin_c - sin));
+  double cosDifference = fabs((double)(cos_c - cos));
+
+  double sinDiffPercentage = (1 - (double)(sin / sin_c)) * 100;
+  double cosDiffPercentage = (1 - (double)(cos / cos_c)) * 100;
+
+  std::cout << "(abs) sin: " << sinDifference << " | (%) sin: " << sinDiffPercentage << "%" << '\n'
+            << "(abs) cos: " << cosDifference << " | (%) cos: " << cosDiffPercentage << "%" << '\n';
+}
+
 int main() {
   double deg;
 
@@ -11,37 +31,18 @@ int main() {
 
   double theta = math::deg2rad(deg);
 
-  std::cout << "\nCalculando usando funções próprias..." << '\n';
-  
-  double sin3 = math::sin(theta, 3);
-  double cos3 = math::cos(theta, 3);
-
-  std::cout << "\nPara 3 termos:" << '\n'
-            << "sen(x) = " << sin3 << '\n'
-            << "cos(x) = " << cos3 << '\n';
-
-  double sin40 = math::sin(theta, 40);
-  double cos40 = math::cos(theta, 40);
-
-  std::cout << "\nPara 40 termos:" << '\n'
-            << "sen(x) = " << sin40 << '\n'
-            << "cos(x) = " << cos40 << '\n';
-
-  std::cout <<"\nCalculando usando cmath..." << '\n';
+  std::cout << "\nCalculando usando cmath..." << '\n';
 
   double sin_c = sin(theta);
   double cos_c = cos(theta);
 
   std::cout << "\nsen(x) = " << sin_c << '\n'
             << "cos(x) = " << cos_c << '\n';
+
+  std::cout << "\nCalculando usando funções próprias..." << '\n';
   
-  std::cout << "\nDiferença entre 3 termos e cmath:" << '\n';
-
-  double sin3Difference = fabs(sin_c - sin3);
-  double cos3Difference = fabs(cos_c - cos3);
-
-  std::cout << "sin: " << sin3Difference << '\n'
-            << "cos: " << cos3Difference << '\n';
+  calculateAndPrintOwnResults(theta, 3, sin_c, cos_c);
+  calculateAndPrintOwnResults(theta, 40, sin_c, cos_c);
   
   return 0;
 }
