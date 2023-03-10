@@ -267,7 +267,7 @@ struct Operations {
       // e o mês é decrementado em 12, para que esteja entre 1 e 12.
       if (paymentMonthInt + i + 1 > 12) {
         paymentMonthInt = (paymentMonthInt + i + 1) - 12;
-        paymentYearInt = std::stoi(paymentYear) + 1;
+        paymentYearInt++;
       } else {
         // Caso contrário, o mês é incrementado em 1.
         paymentMonthInt += i + 1;
